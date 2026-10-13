@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="رزومه بردیا ازوانیان، برنامه‌نویس بک‌اند (ASP.NET، Python)"
+    />
+    <title>رزومه بردیا ازوانیان | برنامه‌نویس بک‌اند</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --sidebar-bg: #2d2d2d;
+        --accent: #ffc107; /* زرد: فقط برای خط‌ها و تزئین */
+        --accent-text: #9a6c00; /* زرد تیره: برای متن روی زمینه سفید */
+        --text-dark: #2b2b2b;
+        --text-body: #444;
+        --text-muted: #666;
+        --line: #e6e6e6;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Vazirmatn", Tahoma, Arial, sans-serif;
+        background: #eceff1;
+        color: var(--text-body);
+        padding: 24px 12px;
+        line-height: 1.7;
+      }
+
+      /* ===== برگه A4 ===== */
+      .resume-container {
+        display: flex;
+        width: 100%;
+        max-width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: #fff;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ===== ستون کناری ===== */
+      .sidebar {
+        width: 33%;
+        background: var(--sidebar-bg);
+        color: #f5f5f5;
+        padding: 32px 22px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sidebar::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-style: solid;
+        border-width: 0 90px 90px 0;
+        border-color: transparent var(--accent) transparent transparent;
+      }
+
+      .photo {
+        position: relative;
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 30px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        background: #444;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .photo i {
+        font-size: 3.5rem;
+        color: #888;
+      }
+
+      .photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .side-block {
+        margin-bottom: 26px;
+      }
+
+      .side-title {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--accent);
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 4px;
+        margin-bottom: 14px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 11px;
+        font-size: 0.8rem;
+      }
+
+      .contact-item i {
+        color: var(--accent);
+        font-size: 1rem;
+        width: 18px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .contact-item span,
+      .contact-item a {
+        color: #fff;
+        text-decoration: none;
+        text-align: right;
+        overflow-wrap: anywhere;
+      }
+
+      .skill-group {
+        margin-bottom: 14px;
+      }
+
+      .skill-label {
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 2px;
+      }
+
+      .skill-list {
+        font-size: 0.85rem;
+        line-height: 1.9;
+      }
+
+      .lang-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        padding: 4px 0;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+      }
+
+      .lang-row b {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* ===== بخش اصلی ===== */
+      .main-content {
+        width: 67%;
+        padding: 38px 36px;
+      }
+
+      .header-name h1 {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        line-height: 1.3;
+      }
+
+      .header-name h2 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--accent-text);
+      }
+
+      .header-sub {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .personal-info-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 28px;
+        margin: 18px 0 30px;
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .personal-info-bar strong {
+        color: var(--text-dark);
+        font-weight: 600;
+        margin-left: 4px;
+      }
+
+      section {
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        padding-bottom: 8px;
+        margin-bottom: 18px;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      .section-title i {
+        color: var(--accent-text);
+        font-size: 1.05rem;
+      }
+
+      .summary-text {
+        font-size: 0.93rem;
+        line-height: 2;
+        text-align: justify;
+      }
+
+      .entry {
+        position: relative;
+        padding-right: 20px;
+        margin-bottom: 20px;
+        break-inside: avoid;
+      }
+
+      .entry::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 9px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .entry-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .entry-meta {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 6px;
+      }
+
+      .entry-list {
+        list-style: none;
+        font-size: 0.9rem;
+      }
+
+      .entry-list li {
+        position: relative;
+        padding-right: 14px;
+        margin-bottom: 4px;
+      }
+
+      .entry-list li::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0.8em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent-text);
+      }
+
+      .entry-stack {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-top: 6px;
+      }
+
+      .entry-stack b {
+        color: var(--text-dark);
+        font-weight: 600;
+      }
+
+      /* ===== موبایل ===== */
+      @media (max-width: 768px) {
+        .resume-container {
+          flex-direction: column;
+        }
+        .sidebar,
+        .main-content {
+          width: 100%;
+        }
+        .main-content {
+          padding: 28px 22px;
+        }
+      }
+
+      /* ===== چاپ و خروجی PDF ===== */
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        body {
+          background: #fff;
+          padding: 0;
+        }
+        .resume-container {
+          box-shadow: none;
+          width: 210mm;
+          max-width: none;
+          min-height: 297mm;
+          flex-direction: row;
+        }
+        .sidebar {
+          width: 33%;
+        }
+        .main-content {
+          width: 67%;
+        }
+        .sidebar,
+        .sidebar::before,
+        .photo,
+        .section-title,
+        .entry::before {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="resume-container">
+      <!-- ستون کناری -->
+      <aside class="sidebar">
+        <div class="photo">
+          <i class="fas fa-user" aria-hidden="true"></i>
+          <img
+            src="_B6A5179.jpg"
+            alt="بردیا ازوانیان"
+            onerror="this.remove()"
+          />
+        </div>
+
+        <div class="side-block">
+          <h3 class="side-title">اطلاعات تماس</h3>
+          <div class="contact-item">
+            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+            <span dir="ltr">0913-277-7477</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a dir="ltr" href="mailto:bardiaazvanian@gmail.com"
+              >bardiaazvanian@gmail.com</a
+            >
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+            <span>کاشان، اصفهان</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github" aria-hidden="true"></i>
+            <a dir="ltr" href="https://github.com/bardiaazvanian"
+              >github.com/bardiaazvanian</a
+            >
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="side-title">مهارت‌ها</h3>
+          <div class="skill-group">
+            <span class="skill-label">تجربه‌ی عملی</span>
+            <div class="skill-list">
+              C#، ASP.NET، Python، FastAPI، Docker، Git، لینوکس، n8n، ربات
+              تلگرام، LangGraph، PyTorch، HuggingFace
+            </div>
+          </div>
+          <div class="skill-group">
+            <span class="skill-label">آشنایی</span>
+            <div class="skill-list">JavaScript، HTML، CSS</div>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h3 class="side-title">زبان انگلیسی</h3>
+          <div class="lang-row"><span>شنیداری</span><b>عالی</b></div>
+          <div class="lang-row"><span>خواندن</span><b>عالی</b></div>
+          <div class="lang-row"><span>گفتاری</span><b>خوب</b></div>
+          <div class="lang-row"><span>نوشتن</span><b>خوب</b></div>
+        </div>
+      </aside>
+
+      <!-- بخش اصلی -->
+      <main class="main-content">
+        <header class="header-name">
+          <h1>بردیا ازوانیان</h1>
+          <h2>برنامه‌نویس بک‌اند</h2>
+          <div class="header-sub">
+            ASP.NET &nbsp;|&nbsp; Python &nbsp;|&nbsp; هوش مصنوعی کاربردی
+          </div>
+        </header>
+
+        <div class="personal-info-bar">
+          <div><strong>تاریخ تولد:</strong> ۱۴ / ۱۱ / ۱۳۸۲</div>
+          <div><strong>وضعیت تأهل:</strong> مجرد</div>
+          <div><strong>وضعیت سربازی:</strong> معافیت دائم</div>
+        </div>
+
+        <section>
+          <h3 class="section-title">
+            <i class="fas fa-user" aria-hidden="true"></i>خلاصه
+          </h3>
+          <p class="summary-text">
+            برنامه‌نویس بک‌اند و دانشجوی کارشناسی مهندسی کامپیوتر. در حال حاضر
+            مسئول پشتیبانی و توسعه‌ی وب‌سایت یک گالری عطر هستم که با ASP.NET
+            نوشته شده است. پیش از آن و در کنار آن، بیش از دو سال با پایتون
+            سرویس‌های وب و ابزارهای کاربردی ساخته‌ام؛ از API و ربات تلگرام تا
+            چت‌بات‌هایی که با مدل‌های زبانی روی اطلاعات خود کسب‌وکار کار
+            می‌کنند. دنبال موقعیتی هستم که در یک تیم واقعی کد بنویسم و مسئولیت
+            بگیرم.
+          </p>
+        </section>
+
+        <section>
+          <h3 class="section-title">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>سابقه‌ی کاری
+          </h3>
+          <div class="entry">
+            <div class="entry-title">برنامه‌نویس و پشتیبان وب‌سایت</div>
+            <span class="entry-meta">گالری طریقت | فروردین 1405 تا امروز</span>
+            <ul class="entry-list">
+              <li>
+                پشتیبانی وب‌سایت گالری که با ASP.NET نوشته شده و رفع مشکلات و
+                خطاهایی که در کار روزانه پیش می‌آید
+              </li>
+              <li>
+                اضافه کردن قابلیت‌های جدید و حذف یا اصلاح بخش‌های موجود، بر
+                اساس نیاز گالری
+              </li>
+              <li>انتشار به‌روزرسانی‌ها روی سایت</li>
+            </ul>
+            <div class="entry-stack"><b>ابزارها:</b> C#، ASP.NET</div>
+          </div>
+        </section>
+
+        <section>
+          <h3 class="section-title">
+            <i class="fas fa-code" aria-hidden="true"></i>پروژه‌ها
+          </h3>
+
+          <div class="entry">
+            <div class="entry-title">سرویس‌های وب و ربات‌ها</div>
+            <ul class="entry-list">
+              <li>
+                نوشتن API با FastAPI و اتصال آن به وب‌سایت، ربات تلگرام و
+                ابزارهای داخلی
+              </li>
+              <li>اجرای سرویس‌ها با Docker روی سرور لینوکس</li>
+            </ul>
+            <div class="entry-stack">
+              <b>ابزارها:</b> Python، FastAPI، Docker، Git
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-title">چت‌بات و دستیار هوشمند برای کسب‌وکارها</div>
+            <ul class="entry-list">
+              <li>
+                ساخت دستیار مبتنی بر مدل‌های زبانی برای فروش و پشتیبانی مشتری که
+                از روی اسناد و اطلاعات خود کسب‌وکار پاسخ می‌دهد
+              </li>
+              <li>آموزش مجدد مدل‌های متن‌باز با روش QLoRA</li>
+            </ul>
+            <div class="entry-stack">
+              <b>ابزارها:</b> Python، LangGraph، PyTorch، HuggingFace، پایگاه
+              داده برداری
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-title">خودکارسازی کارهای تکراری</div>
+            <ul class="entry-list">
+              <li>
+                نوشتن اسکریپت‌های پایتون برای کارهایی که هر روز تکرار می‌شوند،
+                مثل محاسبه‌ی روزانه‌ی قیمت‌ها، تا دیگر نیازی به انجام دستی
+                نباشد
+              </li>
+              <li>
+                طراحی جریان‌های کاری با n8n برای گزارش‌گیری و پشتیبانی
+              </li>
+            </ul>
+            <div class="entry-stack"><b>ابزارها:</b> Python، n8n</div>
+          </div>
+        </section>
+
+        <section>
+          <h3 class="section-title">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i>سوابق
+            تحصیلی
+          </h3>
+          <div class="entry">
+            <div class="entry-title">کارشناسی مهندسی کامپیوتر</div>
+            <span class="entry-meta"
+              >دانشگاه آزاد اسلامی واحد کاشان | ۱۴۰۱ - در حال تحصیل</span
+            >
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
